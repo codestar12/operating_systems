@@ -15,6 +15,7 @@ static long long fib(int n){
 	}else if(n == 1){
 
 		return 1;
+        // caching made the program to fast to see speedup
 	// check array to see if it has been
 	// calculated before
 	// }else if(fib_array[n] > 0){
@@ -39,14 +40,15 @@ int main(int argc, char* argv[]){
 
 	if(argc != 2){fprintf(stderr, "usage: %s num_to_generate\n", argv[0]); exit(-1);}
 	num_of_fib = atoi(argv[1]);
-	//if(num_of_fib < 1 || num_of_fib > 45){fprintf(stderr, "error: nuber must be 0 < n <= 45\n"); exit(-1);}
+	if(num_of_fib < 1 || num_of_fib > 45){fprintf(stderr, "error: nuber must be 0 < n <= 45\n"); exit(-1);}
 
 	fib_array = new long long[num_of_fib];
 
+        // caching made program to fast to see speed up
 	// set value flag for caching
-	for(int i = 0; i < num_of_fib; i++){
-		fib_array[i] = -1;
-	}
+	//for(int i = 0; i < num_of_fib; i++){
+//		fib_array[i] = -1;
+//	}
 
 	long thread;
 	pthread_t* thread_handles;

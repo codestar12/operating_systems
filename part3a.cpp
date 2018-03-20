@@ -3,12 +3,15 @@
 #include <ctime>
 #include <cstdlib>
 
+#define NUM_THREADS 2
+
 int main(){
 	int count = 0, i;
 	int const SIZE = 1000000000;
 	int* my_array;
 	my_array = new int[SIZE];
 	double start_time, start_time_p, end_time, end_time_p;
+	omp_set_num_threads(NUM_THREADS);
 
 	//intitalize random number generator
 	srand((unsigned)time(NULL));
