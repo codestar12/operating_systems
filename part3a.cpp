@@ -5,7 +5,7 @@
 
 int main(){
 	int count = 0, i;
-	int const SIZE = 10000000;
+	int const SIZE = 1000000000;
 	int* my_array;
 	my_array = new int[SIZE];
 	double start_time, start_time_p, end_time, end_time_p;

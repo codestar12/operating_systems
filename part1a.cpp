@@ -3,7 +3,7 @@
 #include <pthread.h>
 
 static long long* fib_array;
-const static int NUM_THREADS = 1;
+const static int NUM_THREADS = 4;
 static int num_of_fib;
 
 static long long fib(int n){

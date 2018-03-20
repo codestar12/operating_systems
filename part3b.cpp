@@ -9,9 +9,10 @@ int private_count[NUM_THREADS];
 
 int* my_array;
 
-int const SIZE = 10000000;
+int const SIZE = 1000000000;
 
 void* count_99(void* rank){
+
 	long my_rank = (long) rank;
 	for(long i = my_rank; i < SIZE; i+=NUM_THREADS){
 		if(my_array[i] == 99)
@@ -64,18 +65,8 @@ int main(){
 
 	for(i=0; i<NUM_THREADS; i++)
 		count += private_count[i];
+
 	gettimeofday(&end_time_p, NULL);
-
-
-
-	// omp_set_num_threads(4);
-	// start_time_p = omp_get_wtime();
-	// #pragma omp parallel for shared(my_array) private(i) reduction(+:count)
-	// for(i=0; i<SIZE; i++){
-	// 	if(my_array[i] == 99)
-	// 		count++;
-	// }
-	// end_time_p = omp_get_wtime();
 
 	runtime = end_time_p.tv_sec + end_time_p.tv_usec / 1000000.0 - start_time_p.tv_sec - start_time_p.tv_usec / 1000000.0;
 	printf("The parallel code indicates there are %d 99s in the array.\n\n", count);
