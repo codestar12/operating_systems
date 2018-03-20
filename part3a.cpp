@@ -11,7 +11,6 @@ int main(){
 	int* my_array;
 	my_array = new int[SIZE];
 	double start_time, start_time_p, end_time, end_time_p;
-	omp_set_num_threads(NUM_THREADS);
 
 	//intitalize random number generator
 	srand((unsigned)time(NULL));
@@ -32,9 +31,8 @@ int main(){
 	printf("The serial code used %f seconds to complete the execution. \n\n", end_time - start_time);
 
 	count = 0;
-	omp_set_num_threads(4);
 	start_time_p = omp_get_wtime();
-	#pragma omp parallel for shared(my_array) private(i) reduction(+:count)
+	#pragma omp parallel for shared(my_array) private(i) reduction(+:count) num_threads(NUM_THREADS)
 	for(i=0; i<SIZE; i++){
 		if(my_array[i] == 99)
 			count++;
